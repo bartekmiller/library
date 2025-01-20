@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
-import { auth } from '../../../auth';
+import { auth } from '@/auth';
 
 const Layout = async ({ children }: { children: ReactNode }) => {
   const session = await auth();

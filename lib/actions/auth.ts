@@ -8,7 +8,7 @@ import { headers } from 'next/headers';
 import ratelimit from '@/lib/ratelimit';
 import { redirect } from 'next/navigation';
 import config from '@/lib/config';
-import { signIn } from '../../../auth';
+import { signIn } from '@/auth';
 import { workflowClient } from '../workflow';
 
 export const signInWithCredentials = async (
