@@ -60,15 +60,6 @@ const FileUpload = ({
   });
   const [progress, setProgress] = useState(0);
 
-  const styles = {
-    button:
-      variant === 'dark'
-        ? 'bg-dark-300'
-        : 'bg-light-600 border-gray-100 border',
-    placeholder: variant === 'dark' ? 'text-light-100' : 'text-slate-500',
-    text: variant === 'dark' ? 'text-light-100' : 'text-dark-400',
-  };
-
   const onError = (error: any) => {
     console.log(error);
 
@@ -91,10 +82,10 @@ const FileUpload = ({
 
   const onValidate = (file: File) => {
     if (type === 'image') {
-      if (file.size > 20 * 1024 * 1024) {
+      if (file.size > 10 * 1024 * 1024) {
         toast({
           title: 'File size too large',
-          description: 'Please upload a file that is less than 20MB in size',
+          description: 'Please upload a file that is less than 10MB in size',
           variant: 'destructive',
         });
 
@@ -136,7 +127,12 @@ const FileUpload = ({
       />
 
       <button
-        className={cn('upload-btn', styles.button)}
+        className={cn(
+          'upload-btn',
+          variant === 'dark'
+            ? 'bg-dark-300'
+            : 'bg-light-600 border-gray-100 border'
+        )}
         onClick={(e) => {
           e.preventDefault();
 
@@ -153,10 +149,22 @@ const FileUpload = ({
           className="object-contain"
         />
 
-        <p className={cn('text-base', styles.placeholder)}>{placeholder}</p>
+        <p
+          className={cn(
+            'text-base',
+            variant === 'dark' ? 'text-light-100' : 'text-slate-500'
+          )}>
+          {placeholder}
+        </p>
 
         {file && (
-          <p className={cn('upload-filename', styles.text)}>{file.filePath}</p>
+          <p
+            className={cn(
+              'upload-filename',
+              variant === 'dark' ? 'text-light-100' : 'text-dark-400'
+            )}>
+            {file.filePath}
+          </p>
         )}
       </button>
 
